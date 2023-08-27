@@ -15,7 +15,7 @@ def play():
             first_num = chosen
         elif i == 1 :
             sec_num = chosen
-     first_char = data[first_num]
+    first_char = data[first_num]
     sec_char = data[sec_num]
     #ask user and compare charector's follower count
     def continu() :
