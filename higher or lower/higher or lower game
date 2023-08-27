@@ -1,0 +1,47 @@
+def play():
+    from art import logo
+    print(logo)
+    #generate two random number and choose two charectors
+    from celeb import data
+    import random
+    num = []
+    for i in range (0,50) :
+        num.append(i)
+
+    for i in [0,1] :
+        chosen = random.choice(num)
+        num.remove(chosen)
+        if i == 0 :
+            first_num = chosen
+        elif i == 1 :
+            sec_num = chosen
+     first_char = data[first_num]
+    sec_char = data[sec_num]
+    #ask user and compare charector's follower count
+    def continu() :
+        def sentence(char):
+            return(f"{char['name']} the {char['description']} from {char['country']} ")
+        print("LETS START WITH...")
+        print(f'{sentence(first_char)}\nOR\n{sentence(sec_char)}')
+        user_char = input("WHICH ONE? ").lower()
+
+        #check if the user was right 
+        answer = max([first_char['follower_count'],sec_char['follower_count']])
+        if user_char == answer['name'] :
+            print("CORRECT!!\nNOW BE READY FOR THE NEXT ROUND")
+            first_char = answer
+            chosen1 = random.choice(num)
+            num.remove(chosen1)
+            sec_char = data[chosen1]
+        #if yes : generate another number and again loop through stages 
+            continu()
+        #if no : end the game and ask user if it wants to play it over
+        else :
+            print(f"WRONG ANSWER! THE ANSWER WAS {answer['name']}\n")
+            continu = input("DO YOU WANT TO PLAY OVER??")
+            if continu == "yes":
+                play()
+            else :
+                return
+    continu()
+play()
